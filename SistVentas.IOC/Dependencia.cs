@@ -9,7 +9,10 @@ using Microsoft.Extensions.DependencyInjection;
 using SistVentas.DAL.DBContext;
 using Microsoft.EntityFrameworkCore;
 
-
+using SistVentas.DAL.Interfaces;
+using SistVentas.DAL.Implementacion;
+using SistVentas.BLL.Interfaces;
+using SistVentas.BLL.Implementacion;
 
 namespace SistVentas.IOC
 {
@@ -21,6 +24,15 @@ namespace SistVentas.IOC
             {
                 options.UseSqlServer(Configuration.GetConnectionString("CadenaSQL"));
             });
+
+            services.AddTransient(typeof(IGenericRepository<>), typeof(GeneryRepository<>));
+            services.AddScoped<IVentaRepository, VentaRepository>();
+
+            services.AddScoped<ICorreoService, CorreoService>();
+            services.AddScoped<IFireBaseService,FireBaseService>();
+            services.AddScoped<IUtilidadesService, UtilidadesService>();
+            services.AddScoped<IRolService,RolService>();
+            services.AddScoped<IUsuarioService,UsuarioService>();
 
         }
     }

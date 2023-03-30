@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FirebaseAuthentication.net" Version="3.7.2" />
+    <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SistVentas.DAL\SistVentas.DAL.csproj" />
     <ProjectReference Include="..\SistVentas.Entity\SistVentas.Entity.csproj" />
   </ItemGroup>
