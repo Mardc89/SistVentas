@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 using Microsoft.EntityFrameworkCore;
 using System.Net;
-using System.Text;
 using SistVentas.BLL.Interfaces;
 using SistVentas.DAL.Interfaces;
 using SistVentas.Entity;
@@ -48,7 +47,7 @@ namespace SistVentas.BLL.Implementacion
                 entidad.NombreFoto = Nombrefoto;
 
                 if (Foto != null) {
-                    string urlFoto = await _firebaseService.SubirStorage(Foto,"Nombre_Usuario",Nombrefoto);
+                    string urlFoto = await _firebaseService.SubirStorage(Foto,"carpeta_usuario",Nombrefoto);
                     entidad.UrlFoto = urlFoto;               
                 }
 
@@ -118,6 +117,7 @@ namespace SistVentas.BLL.Implementacion
                 usuario_editar.Correo = entidad.Correo;
                 usuario_editar.Telefono = entidad.Telefono;
                 usuario_editar.IdRol = entidad.IdRol;
+                usuario_editar.EsActivo = entidad.EsActivo;
 
                 if (usuario_editar.NombreFoto == "")
                     usuario_editar.NombreFoto = Nombrefoto;
@@ -129,7 +129,7 @@ namespace SistVentas.BLL.Implementacion
 
                 bool respuesta = await _repositorio.Editar(usuario_editar);
 
-                if (respuesta)
+                if (!respuesta)
                     throw new TaskCanceledException("No se pudo modificar el Usuario");
 
                 Usuario usuario_editado = queryUsuario.Include(r=>r.IdRolNavigation).First();
@@ -150,7 +150,7 @@ namespace SistVentas.BLL.Implementacion
             {
                 Usuario usuario_encontrado = await _repositorio.Obtener(u => u.IdUsuario ==IdUsuario);
 
-                if (usuario_encontrado != null)
+                if (usuario_encontrado == null)
                     throw new TaskCanceledException("El Usuario no Existe");
 
                 string nombreFoto = usuario_encontrado.NombreFoto;
