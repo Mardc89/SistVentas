@@ -5,9 +5,11 @@ using SistVentas.AplicacionWeb.Models.ViewModels;
 using SistVentas.AplicacionWeb.Utilidades.Response;
 using SistVentas.BLL.Interfaces;
 using SistVentas.Entity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SistVentas.AplicacionWeb.Controllers
 {
+    [Authorize]
     public class CategoriaController : Controller
     {
         private readonly IMapper _mapper;

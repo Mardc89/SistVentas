@@ -7,9 +7,11 @@ using SistVentas.AplicacionWeb.Utilidades.Response;
 using SistVentas.BLL.Interfaces;
 using SistVentas.Entity;
 using SistVentas.DAL.Implementacion;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SistVentas.AplicacionWeb.Controllers
 {
+    [Authorize]
     public class ProductoController : Controller
     {
         private readonly IMapper _mapper;

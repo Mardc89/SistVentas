@@ -6,10 +6,11 @@ using SistVentas.AplicacionWeb.Models.ViewModels;
 using SistVentas.AplicacionWeb.Utilidades.Response;
 using SistVentas.BLL.Interfaces;
 using SistVentas.Entity;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace SistVentas.AplicacionWeb.Controllers
 {
+    [Authorize]
     public class UsuarioController : Controller
     {
         private readonly IUsuarioService _usuarioServicio;

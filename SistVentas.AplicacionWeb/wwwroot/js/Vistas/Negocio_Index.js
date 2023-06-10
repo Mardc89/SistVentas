@@ -10,14 +10,14 @@
         .then(responseJson => {
             if (responseJson.estado) {
                 const d = responseJson.objeto
-                $("txtNumeroDocumento").val(d.numerodocumento)
-                $("txtRazonSocial").val(d.nombre)
-                $("txtCorreo").val(d.correo)
-                $("txtDireccion").val(d.direccion)
-                $("txTelefono").val(d.telefono)
-                $("txtImpuesto").val(d.porcentajeImpuesto)
-                $("txtSimboloMoneda").val(d.simboloMoneda)
-                $("imgLogo").attr("src", d.UrlLogo)
+                $("#txtNumeroDocumento").val(d.numeroDocumento)
+                $("#txtRazonSocial").val(d.nombre)
+                $("#txtCorreo").val(d.correo)
+                $("#txtDireccion").val(d.direccion)
+                $("#txTelefono").val(d.telefono)
+                $("#txtImpuesto").val(d.porcentajeImpuesto)
+                $("#txtSimboloMoneda").val(d.simboloMoneda)
+                $("#imgLogo").attr("src", d.urlLogo)
 
             }
             else {
@@ -41,19 +41,19 @@ $("#btnGuardarCambios").click(function () {
     }
 
     const modelo = {
-        numerodocumento: $("txtNumeroDocumento").val(),
-        nombre:$("txtRazonSocial").val(),
-        Correo:$("txtCorreo").val(),    
-        Direccion:$("txtDireccion").val(),   
-        Telefono:$("txTelefono").val(),   
-        Impuesto:$("txtImpuesto").val(),     
-        SimboloMoneda:$("txtSimboloMoneda").val()                              
+        numeroDocumento: $("#txtNumeroDocumento").val(),
+        nombre:$("#txtRazonSocial").val(),
+        correo:$("#txtCorreo").val(),    
+        direccion:$("#txtDireccion").val(),   
+        telefono:$("#txTelefono").val(),   
+        porcentajeImpuesto:$("#txtImpuesto").val(),     
+        simboloMoneda:$("#txtSimboloMoneda").val()                              
     }
 
-    const imputLog = document.getElementById("imgLogo")
+    const inputLog = document.getElementById("txtLogo")
 
     const formData = new FormData()
-    formData.append("logo", inputFoto.files[0])
+    formData.append("logo", inputLog.files[0])
     formData.append("modelo", JSON.stringify(modelo))
 
     $(".card-body").LoadingOverlay("show");
@@ -69,7 +69,7 @@ $("#btnGuardarCambios").click(function () {
         .then(responseJson => {
             if (responseJson.estado) {
                 const d = responseJson.objeto
-                $("imgLogo").attr("src", d.UrlLogo)
+                $("#imgLogo").attr("src", d.urlLogo)
 
             }
             else {
